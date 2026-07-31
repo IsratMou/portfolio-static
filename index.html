@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Israt Jahan Mou — AI/ML Engineer & Researcher</title>
+  <meta name="description" content="Portfolio of Israt Jahan Mou — Computer Science undergraduate specializing in machine learning, deep learning, and computer vision. Final-year researcher at University of Asia Pacific, Dhaka." />
+  <meta name="keywords" content="Israt Jahan Mou, Machine Learning, Deep Learning, Computer Vision, YOLOv11, Video Swin Transformer, Intrusion Detection, AI Researcher, Bangladesh" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ============== NAVBAR ============== -->
+  <header class="navbar">
+    <nav class="nav-inner" id="navbar">
+      <button class="brand" onclick="scrollToSection('#hero')" aria-label="Back to top">
+        <span class="brand-monogram">IM</span>
+        <span class="brand-text">
+          <span class="brand-name">Israt Jahan Mou</span>
+          <span class="brand-role">AI / ML Researcher</span>
+        </span>
+      </button>
+
+      <div class="nav-links">
+        <button onclick="scrollToSection('#about')">About</button>
+        <button onclick="scrollToSection('#skills')">Skills</button>
+        <button onclick="scrollToSection('#research')">Research</button>
+        <button onclick="scrollToSection('#projects')">Projects</button>
+        <button onclick="scrollToSection('#contact')">Contact</button>
+      </div>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"></path>
+          </svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <button onclick="scrollToSection('#about')">About</button>
+      <button onclick="scrollToSection('#skills')">Skills</button>
+      <button onclick="scrollToSection('#research')">Research</button>
+      <button onclick="scrollToSection('#projects')">Projects</button>
+      <button onclick="scrollToSection('#contact')">Contact</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============== HERO ============== -->
+    <section id="hero" class="hero">
+      <!-- Background layers -->
+      <div class="hero-bg-mesh" aria-hidden="true"></div>
+      <div class="hero-bg-glow" id="heroGlow" aria-hidden="true"></div>
+      <div class="hero-bg-panel" aria-hidden="true"></div>
+
+      <div class="hero-grid">
+        <!-- LEFT: Text + CTAs -->
+        <div class="hero-left">
+          <span class="status-pill">
+            <span class="status-dot"></span>
+            Open to AI / ML Engineering roles
+          </span>
+
+          <div class="hero-heading">
+            <p class="hero-greeting">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"></path>
+              </svg>
+              Hello, I'm
+            </p>
+            <h1 class="hero-name">
+              Israt Jahan
+              <br />
+              <span class="hero-name-accent">Mou</span>
+            </h1>
+
+            <div class="hero-typing">
+              <span class="typing-dot"></span>
+              <span id="typingText" class="typing-text"></span><span class="typing-caret"></span>
+            </div>
+
+            <p class="hero-location">
+              <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              Dhaka, Bangladesh · Remote-friendly
+            </p>
+          </div>
+
+          <p class="hero-bio">
+            Final-year Computer Science undergraduate at University of Asia Pacific
+            (CGPA 3.78/4.00). I design lightweight intrusion-detection architectures
+            and multi-modal surveillance pipelines — currently preparing an IEEE
+            submission for <strong>MOI-Lite + E-SATF</strong>.
+          </p>
+
+          <div class="hero-ctas">
+            <button class="btn-primary" onclick="scrollToSection('#projects')">
+              View Projects
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </button>
+            <button class="btn-secondary" onclick="scrollToSection('#contact')">
+              <svg class="icon-sm text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              Get in touch
+            </button>
+          </div>
+
+          <div class="hero-socials">
+            <span class="socials-label">Find me</span>
+            <span class="socials-divider"></span>
+            <a href="https://github.com/IsratMou" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/israt-jahan-mou-a80007366" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="https://huggingface.co/MOUcat" target="_blank" rel="noopener noreferrer" aria-label="Hugging Face" class="social-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="9" y1="13" x2="15" y2="13"></line>
+                <line x1="9" y1="17" x2="15" y2="17"></line>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Mobile-only compact avatar card -->
+          <div class="mobile-avatar-card">
+            <div class="mobile-avatar-ring">
+              <div class="mobile-avatar-disc">
+                <img src="assets/profile.png" alt="Israt Jahan Mou — AI/ML Researcher" />
+              </div>
+            </div>
+            <div class="mobile-avatar-info">
+              <span class="mobile-avatar-name">Israt Jahan Mou</span>
+              <span class="mobile-avatar-role">AI / ML Researcher</span>
+              <div class="mobile-avatar-chips">
+                <span class="chip-stat chip-lavender">3.78 CGPA</span>
+                <span class="chip-stat chip-mint">2 Projects</span>
+                <span class="chip-stat chip-pink">IEEE in prep</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Avatar dashboard (desktop only) -->
+        <div class="hero-right">
+          <div class="avatar-card">
+            <div class="avatar-card-glow" id="avatarGlow" aria-hidden="true"></div>
+
+            <div class="avatar-inner">
+              <div class="avatar-wrap">
+                <div class="orbiting-dots" aria-hidden="true">
+                  <span class="dot dot-top"></span>
+                  <span class="dot dot-right"></span>
+                  <span class="dot dot-bottom"></span>
+                  <span class="dot dot-left"></span>
+                </div>
+
+                <div class="avatar-ring">
+                  <div class="avatar-disc">
+                    <img src="assets/profile.png" alt="Israt Jahan Mou — AI/ML Researcher" />
+                  </div>
+                </div>
+              </div>
+
+              <p class="avatar-name">Israt Jahan Mou</p>
+              <p class="avatar-role">AI / ML Researcher</p>
+
+              <div class="avatar-stats">
+                <div class="stat-mini">
+                  <span class="stat-value text-lavender" data-count="3.78" data-decimals="2">3.78</span>
+                  <span class="stat-label">CGPA</span>
+                </div>
+                <div class="stat-mini">
+                  <span class="stat-value text-mint" data-count="2" data-decimals="0">0</span>
+                  <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-mini">
+                  <span class="stat-value text-pink">IEEE</span>
+                  <span class="stat-label">in prep</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="floating-chip chip-mint-bg float-1">
+              <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+              CGPA 3.78
+            </div>
+            <div class="floating-chip chip-pink-bg float-2">
+              <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                <rect x="9" y="9" width="6" height="6"></rect>
+                <line x1="9" y1="1" x2="9" y2="4"></line>
+                <line x1="15" y1="1" x2="15" y2="4"></line>
+                <line x1="9" y1="20" x2="9" y2="23"></line>
+                <line x1="15" y1="20" x2="15" y2="23"></line>
+                <line x1="20" y1="9" x2="23" y2="9"></line>
+                <line x1="20" y1="14" x2="23" y2="14"></line>
+                <line x1="1" y1="9" x2="4" y2="9"></line>
+                <line x1="1" y1="14" x2="4" y2="14"></line>
+              </svg>
+              YOLOv11 + Swin
+            </div>
+            <div class="floating-chip chip-butter-bg float-3">
+              <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              IEEE in prep
+            </div>
+          </div>
+
+          <div class="focus-card">
+            <span class="focus-label">Focus areas</span>
+            <div class="focus-chips">
+              <span class="focus-chip chip-mint-bg">
+                <svg class="icon-xxs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                  <rect x="9" y="9" width="6" height="6"></rect>
+                </svg>
+                Computer Vision
+              </span>
+              <span class="focus-chip chip-pink-bg">
+                <svg class="icon-xxs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                </svg>
+                Deep Learning
+              </span>
+              <span class="focus-chip chip-sky-bg">
+                <svg class="icon-xxs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                </svg>
+                IoT Security
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="scroll-hint" onclick="scrollToSection('#about')" aria-label="Scroll down">
+        <span class="scroll-hint-label">Scroll</span>
+        <span class="scroll-hint-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+        </span>
+      </button>
+    </section>
+
+    <!-- ============== CURRENTLY ============== -->
+    <section class="section currently">
+      <div class="container">
+        <div class="section-heading-center reveal">
+          <span class="eyebrow">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"></path>
+            </svg>
+            Right now
+          </span>
+          <h2>What I'm up to</h2>
+          <p>A snapshot of the things I'm actively building, writing, learning, and exploring — each with its current progress.</p>
+        </div>
+
+        <div class="currently-grid">
+          <article class="current-card reveal">
+            <div class="current-header">
+              <div class="current-title-wrap">
+                <span class="current-icon chip-mint-bg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 3h6v4H9zM10 8h4M7 20a3 3 0 0 0 3-3V8h4v9a3 3 0 0 0 3 3M10 14h4"></path>
+                  </svg>
+                </span>
+                <div>
+                  <span class="current-tag text-mint">Research</span>
+                  <h3>Currently building</h3>
+                </div>
+              </div>
+              <span class="current-progress-badge text-mint">75%</span>
+            </div>
+            <p>MOI-Lite + E-SATF — a compact intrusion-detection architecture benchmarked across TON-IoT, UNSW-NB15, and CIC-IDS2017 under tight compute and memory budgets.</p>
+            <div class="progress-track">
+              <div class="progress-fill bg-mint" data-progress="75"></div>
+            </div>
+            <div class="current-milestone">
+              <span class="milestone-dot bg-mint"></span>
+              <span>Architecture comparison complete · cross-dataset eval in progress</span>
+            </div>
+          </article>
+
+          <article class="current-card reveal">
+            <div class="current-header">
+              <div class="current-title-wrap">
+                <span class="current-icon chip-pink-bg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                  </svg>
+                </span>
+                <div>
+                  <span class="current-tag text-pink">IEEE paper</span>
+                  <h3>Currently writing</h3>
+                </div>
+              </div>
+              <span class="current-progress-badge text-pink">55%</span>
+            </div>
+            <p>Manuscript in preparation for IEEE submission. Three research questions, three datasets, one compact architecture — with SHAP-based explainability baked in.</p>
+            <div class="progress-track">
+              <div class="progress-fill bg-pink" data-progress="55"></div>
+            </div>
+            <div class="current-milestone">
+              <span class="milestone-dot bg-pink"></span>
+              <span>Draft 60% complete · figures pending</span>
+            </div>
+          </article>
+
+          <article class="current-card reveal">
+            <div class="current-header">
+              <div class="current-title-wrap">
+                <span class="current-icon chip-sky-bg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                  </svg>
+                </span>
+                <div>
+                  <span class="current-tag text-sky">Thesis</span>
+                  <h3>Currently learning</h3>
+                </div>
+              </div>
+              <span class="current-progress-badge text-sky">80%</span>
+            </div>
+            <p>Video Swin Transformer internals and fuzzy-logic risk labeling ahead of my thesis defense. Stress-testing the pipeline with a 9-failure-mode ablation protocol.</p>
+            <div class="progress-track">
+              <div class="progress-fill bg-sky" data-progress="80"></div>
+            </div>
+            <div class="current-milestone">
+              <span class="milestone-dot bg-sky"></span>
+              <span>Defense prep · Q2 2026</span>
+            </div>
+          </article>
+
+          <article class="current-card reveal">
+            <div class="current-header">
+              <div class="current-title-wrap">
+                <span class="current-icon chip-butter-bg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                  </svg>
+                </span>
+                <div>
+                  <span class="current-tag text-butter">Next step</span>
+                  <h3>Currently exploring</h3>
+                </div>
+              </div>
+              <span class="current-progress-badge text-butter">40%</span>
+            </div>
+            <p>Master's programs in Artificial Intelligence while interviewing for AI/ML Engineering roles — focused on production-grade CV and security research.</p>
+            <div class="progress-track">
+              <div class="progress-fill bg-butter" data-progress="40"></div>
+            </div>
+            <div class="current-milestone">
+              <span class="milestone-dot bg-butter"></span>
+              <span>Applications open · rolling</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== ABOUT ============== -->
+    <section id="about" class="section about">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"></path>
+            </svg>
+            About
+          </span>
+          <h2>A researcher who ships, not just studies</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-main reveal">
+            <p>I'm a final-year Computer Science undergraduate at the <strong>University of Asia Pacific</strong> (CGPA 3.78/4.00), specializing in machine learning, deep learning, and computer vision. My work sits at the intersection of research rigor and production-grade engineering — I care about architectures that actually run under tight compute budgets, not just paper-friendly numbers.</p>
+            <p>My flagship research, <strong>MOI-Lite + E-SATF</strong>, is a compact intrusion-detection architecture benchmarked across three IoT security datasets (TON-IoT, UNSW-NB15, CIC-IDS2017), with a manuscript currently in preparation for IEEE submission. My thesis project fuses YOLOv11 with a Video Swin Transformer for real-time surveillance threat detection — combining object detection and spatio-temporal behavior modeling through a risk-scoring MLP.</p>
+            <p>Beyond research, I ship end-to-end: classical ML pipelines deployed on Hugging Face Spaces via Gradio, full-stack e-commerce migrations, and Java-based automation. I'm seeking an <strong>AI/ML Engineering role</strong> while applying for a Master's in Artificial Intelligence.</p>
+
+            <div class="about-stats">
+              <div class="stat-card">
+                <span class="stat-value text-lavender" data-count="3.78" data-decimals="2">0</span>
+                <span class="stat-label">CGPA</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-value text-mint" data-count="2" data-decimals="0">0</span>
+                <span class="stat-label">Research projects</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-value text-pink" data-count="3" data-decimals="0">0</span>
+                <span class="stat-label">IoT datasets</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-value text-butter" data-count="9" data-decimals="0">0</span>
+                <span class="stat-label">Failure modes</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-side reveal">
+            <a class="info-card" href="#education" onclick="event.preventDefault(); scrollToSection('#education')">
+              <span class="info-icon chip-mint-bg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                </svg>
+              </span>
+              <div>
+                <span class="info-label">Education</span>
+                <span class="info-value">B.Sc. in CSE — University of Asia Pacific</span>
+                <span class="info-sub">Expected graduation: 2027</span>
+              </div>
+            </a>
+            <div class="info-card">
+              <span class="info-icon chip-pink-bg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </span>
+              <div>
+                <span class="info-label">Location</span>
+                <span class="info-value">Dhaka, Bangladesh</span>
+                <span class="info-sub">Open to remote / relocation</span>
+              </div>
+            </div>
+            <a class="info-card" href="mailto:israt.mou96@gmail.com">
+              <span class="info-icon chip-sky-bg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </span>
+              <div>
+                <span class="info-label">Email</span>
+                <span class="info-value">israt.mou96@gmail.com</span>
+              </div>
+            </a>
+            <a class="info-card" href="tel:+8801841620292">
+              <span class="info-icon chip-butter-bg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </span>
+              <div>
+                <span class="info-label">Phone</span>
+                <span class="info-value">+880 1841-620292</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== TECH MARQUEE ============== -->
+    <section class="tech-marquee">
+      <div class="container">
+        <div class="marquee-label">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          Tools of the trade
+        </div>
+        <div class="marquee-wrap">
+          <div class="marquee-fade marquee-fade-left"></div>
+          <div class="marquee-fade marquee-fade-right"></div>
+          <div class="marquee-track" id="marqueeTrack"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== SKILLS ============== -->
+    <section id="skills" class="section skills">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"></path>
+            </svg>
+            Skills
+          </span>
+          <h2>From research code to deployed demos</h2>
+          <p>A working stack spanning classical ML, modern deep learning, computer vision, and full-stack deployment — with self-rated proficiency.</p>
+        </div>
+
+        <div class="skills-grid" id="skillsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ============== RESEARCH ============== -->
+    <section id="research" class="section research">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"></path>
+            </svg>
+            Research & Thesis
+          </span>
+          <h2>Where ML theory meets the engineering grind</h2>
+          <p>Two flagship projects — one heading to IEEE, one heading to thesis defense.</p>
+        </div>
+
+        <div class="research-list" id="researchList"></div>
+      </div>
+    </section>
+
+    <!-- ============== PROJECTS ============== -->
+    <section id="projects" class="section projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"></path>
+            </svg>
+            Projects
+          </span>
+          <h2>Things I've designed, built, and shipped</h2>
+          <p>From research-grade ML demos to full-stack apps and database systems.</p>
+        </div>
+
+        <div class="projects-ai" id="projectsAI"></div>
+
+        <h3 class="projects-subhead">Software Engineering</h3>
+        <div class="projects-se" id="projectsSE"></div>
+      </div>
+    </section>
+
+    <!-- ============== EDUCATION ============== -->
+    <section id="education" class="section education">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"></path>
+            </svg>
+            Education
+          </span>
+          <h2>Where it all comes together</h2>
+          <p>A focused undergraduate path with research output already in flight.</p>
+        </div>
+
+        <div class="education-main reveal">
+          <div class="education-info">
+            <span class="education-icon chip-lavender-bg">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </span>
+            <div>
+              <h3>University of Asia Pacific (UAP)</h3>
+              <p>B.Sc. in Computer Science and Engineering · Dhaka, Bangladesh</p>
+              <p class="education-sub">Expected graduation: 2027</p>
+            </div>
+          </div>
+          <div class="education-cgpa">
+            <span class="education-award">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="7"></circle>
+                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+              </svg>
+            </span>
+            <div>
+              <span class="stat-value text-lavender" data-count="3.78" data-decimals="2">0</span>
+              <span class="education-cgpa-label">CGPA / 4.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="education-detail-grid reveal">
+          <div class="education-detail">
+            <span class="education-detail-label">Specialization</span>
+            <span class="education-detail-value">ML · DL · Computer Vision</span>
+            <span class="education-detail-desc">Coursework and research concentrated on intelligent systems and vision-based perception.</span>
+          </div>
+          <div class="education-detail">
+            <span class="education-detail-label">Research Output</span>
+            <span class="education-detail-value">IEEE (in prep.)</span>
+            <span class="education-detail-desc">MOI-Lite + E-SATF manuscript in preparation for IEEE submission.</span>
+          </div>
+          <div class="education-detail">
+            <span class="education-detail-label">Next Step</span>
+            <span class="education-detail-value">MSc in AI</span>
+            <span class="education-detail-desc">Actively applying for Master's programs in Artificial Intelligence alongside AI/ML roles.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== CONTACT ============== -->
+    <section id="contact" class="section contact">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"></path>
+            </svg>
+            Contact
+          </span>
+          <h2>Let's build something thoughtful</h2>
+          <p>Recruiting for an AI/ML role, exploring MSc supervision, or just want to chat about IoT security or video surveillance? My inbox is open.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-items" id="contactItems"></div>
+
+          <form class="contact-form reveal" id="contactForm">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+              </div>
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" placeholder="Tell me about the role, project, or research idea…" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              Send message
+            </button>
+            <p class="form-note">This form opens your email client — no server, no tracking, just you and my inbox.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-card">
+        <div class="footer-brand">
+          <span class="footer-monogram">IM</span>
+          <div>
+            <span class="footer-name">Israt Jahan Mou</span>
+            <span class="footer-status">
+              <span class="status-dot"></span>
+              Available for AI / ML roles
+            </span>
+          </div>
+        </div>
+        <div class="footer-actions">
+          <span class="footer-copy">
+            © <span id="year"></span> · Built with
+            <svg class="footer-heart" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            & a soft neumorphic touch
+          </span>
+          <button class="btn-secondary" onclick="scrollToTop()">
+            <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+            Back to top
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
