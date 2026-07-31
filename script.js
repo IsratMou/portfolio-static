@@ -128,9 +128,30 @@ function scrollToTop() {
   animate();
 })();
 
-/* ============== SCROLL REVEAL ============== */
+/* ============== SCROLL REVEAL ==============
+   Uses IntersectionObserver to add an entrance animation when elements
+   scroll into view. Safety net: after 1.5s, re-query the LIVE DOM (not a
+   stale snapshot) so dynamically-injected .reveal elements (skill cards,
+   research cards, project cards, contact items) also get forced visible
+   if IntersectionObserver never fires. */
 (function initReveal() {
-  const reveals = document.querySelectorAll('.reveal');
+  // Force-reveal any element that's still hidden after 1.5s.
+  // Re-query the DOM at fire time — many .reveal elements are injected
+  // AFTER this IIFE runs (skills, research, projects, contact generators).
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.is-visible):not(.reveal-fallback)')
+      .forEach((el) => el.classList.add('reveal-fallback', 'is-visible'));
+  }, 1500);
+
+  // Also force-reveal elements already in the viewport on load.
+  document.querySelectorAll('.reveal').forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add('is-visible');
+    }
+  });
+
+  // Observe remaining elements.
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -138,57 +159,100 @@ function scrollToTop() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-  reveals.forEach((el) => observer.observe(el));
+  document.querySelectorAll('.reveal:not(.is-visible)').forEach((el) => observer.observe(el));
 })();
 
 /* ============== ANIMATED COUNTERS ============== */
+function animateCounter(el) {
+  if (el.dataset.counted === '1') return;
+  el.dataset.counted = '1';
+  const target = parseFloat(el.dataset.count);
+  const decimals = parseInt(el.dataset.decimals || '0', 10);
+  const duration = 1400;
+  const start = performance.now();
+
+  function step(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    // easeOutCubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const value = target * eased;
+    el.textContent = value.toFixed(decimals);
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target.toFixed(decimals);
+  }
+  requestAnimationFrame(step);
+}
+
 (function initCounters() {
-  const counters = document.querySelectorAll('[data-count]');
+  // Safety net: after 1.8s, force any counter that hasn't fired to its final value.
+  setTimeout(() => {
+    document.querySelectorAll('[data-count]:not([data-counted="1"])').forEach((el) => {
+      const target = parseFloat(el.dataset.count);
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      el.textContent = target.toFixed(decimals);
+      el.dataset.counted = '1';
+    });
+  }, 1800);
+
+  // Also animate counters that are already in the viewport on load.
+  document.querySelectorAll('[data-count]').forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      animateCounter(el);
+    }
+  });
+
+  // Observe remaining counters.
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const target = parseFloat(el.dataset.count);
-      const decimals = parseInt(el.dataset.decimals || '0', 10);
-      const duration = 1400;
-      const start = performance.now();
-
-      function step(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        // easeOutCubic
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const value = target * eased;
-        el.textContent = value.toFixed(decimals);
-        if (progress < 1) requestAnimationFrame(step);
-        else el.textContent = target.toFixed(decimals);
-      }
-      requestAnimationFrame(step);
-      observer.unobserve(el);
+      animateCounter(entry.target);
+      observer.unobserve(entry.target);
     });
   }, { threshold: 0.4 });
 
-  counters.forEach((el) => observer.observe(el));
+  document.querySelectorAll('[data-count]:not([data-counted="1"])').forEach((el) => observer.observe(el));
 })();
 
 /* ============== PROGRESS BARS ============== */
+function fillProgress(el) {
+  if (el.dataset.filled === '1') return;
+  el.dataset.filled = '1';
+  const target = parseFloat(el.dataset.progress);
+  setTimeout(() => { el.style.width = target + '%'; }, 150);
+}
+
 (function initProgressBars() {
-  const bars = document.querySelectorAll('.progress-fill[data-progress]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
+  // Safety net: after 1.8s, force any progress bar that hasn't fired to its final width.
+  setTimeout(() => {
+    document.querySelectorAll('.progress-fill[data-progress]:not([data-filled="1"])').forEach((el) => {
       const target = parseFloat(el.dataset.progress);
-      setTimeout(() => {
-        el.style.width = target + '%';
-      }, 150);
-      observer.unobserve(el);
+      el.style.width = target + '%';
+      el.dataset.filled = '1';
+    });
+  }, 1800);
+
+  // Also fill bars that are already in the viewport on load.
+  document.querySelectorAll('.progress-fill[data-progress]').forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      fillProgress(el);
+    }
+  });
+
+  // Observe remaining bars.
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      fillProgress(entry.target);
+      observer.unobserve(entry.target);
     });
   }, { threshold: 0.3 });
 
-  bars.forEach((el) => observer.observe(el));
+  document.querySelectorAll('.progress-fill[data-progress]:not([data-filled="1"])').forEach((el) => observer.observe(el));
 })();
 
 /* ============== TECH MARQUEE ============== */

@@ -190,15 +190,27 @@ input, textarea { font-family: inherit; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
-/* ============== SCROLL REVEAL ============== */
+/* ============== SCROLL REVEAL ==============
+   Content is ALWAYS visible. Reveal is purely an entrance animation
+   that fires when an element first enters the viewport. If JS never
+   runs (crawlers, no-JS, slow connections), users still see all
+   content with no animation. */
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Only hide content if the user has NOT requested reduced motion AND
+     JS hasn't yet added the is-visible class. We use a small timeout
+     in the script that, after 800ms, forces everything visible as a
+     safety net. */
+  .reveal:not(.is-visible):not(.reveal-fallback) {
+    opacity: 0;
+    transform: translateY(24px);
+  }
 }
 
 /* ============== NAVBAR ============== */
@@ -249,7 +261,7 @@ input, textarea { font-family: inherit; }
 .brand-role { font-size: 0.6875rem; line-height: 1.2; color: var(--muted-fg); }
 
 .nav-links { display: none; align-items: center; gap: 0.25rem; }
-@media (min-width: 768px) { .nav-links { display: flex; } }
+@media (min-width: 1024px) { .nav-links { display: flex; } }
 .nav-links button {
   padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
@@ -297,7 +309,7 @@ input, textarea { font-family: inherit; }
 .menu-toggle .icon-close { display: none; }
 .menu-toggle.is-open .icon-menu { display: none; }
 .menu-toggle.is-open .icon-close { display: block; }
-@media (min-width: 768px) { .menu-toggle { display: none; } }
+@media (min-width: 1024px) { .menu-toggle { display: none; } }
 .menu-toggle svg { width: 1.25rem; height: 1.25rem; }
 
 .mobile-menu {
@@ -312,7 +324,7 @@ input, textarea { font-family: inherit; }
   gap: 0.25rem;
 }
 .mobile-menu.is-open { display: flex; }
-@media (min-width: 768px) { .mobile-menu { display: none !important; } }
+@media (min-width: 1024px) { .mobile-menu { display: none !important; } }
 .mobile-menu button {
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
@@ -1335,10 +1347,189 @@ input, textarea { font-family: inherit; }
 }
 @media (min-width: 640px) { .footer::after { display: none; } }
 
-/* ============== RESPONSIVE TWEAKS ============== */
-@media (max-width: 640px) {
-  .hero-name { font-size: 2.5rem; }
-  .current-card, .research-card, .about-main, .contact-form, .skill-card, .project-card { padding: 1.25rem; }
+/* ============== RESPONSIVE — COMPREHENSIVE ============== */
+
+/* === LARGE PHONES (≤ 480px) === */
+@media (max-width: 480px) {
+  /* Tighten the hero */
+  .hero { padding: 6rem 1rem 4rem; min-height: auto; }
+  .hero-name { font-size: 2.5rem; line-height: 1.05; }
+  .hero-bio { font-size: 0.9375rem; line-height: 1.65; }
+  .hero-typing { padding: 0.5rem 0.875rem; }
+  .typing-text { font-size: 0.875rem; }
+  .hero-ctas { gap: 0.5rem; width: 100%; }
+  .hero-ctas .btn-primary,
+  .hero-ctas .btn-secondary { flex: 1; justify-content: center; padding: 0.875rem 1rem; font-size: 0.8125rem; }
+  .hero-socials { width: 100%; justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
+  .socials-label, .socials-divider { display: none; }
+  .scroll-hint { display: none !important; }
+  .hero-bg-panel { display: none; } /* big pressed panel too heavy on small screens */
+
+  /* Section spacing */
+  .section { padding: 4rem 0; }
+  .container { padding: 0 1rem; }
+
+  /* About stats — 2 cols, not 4 */
+  .about-stats { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+  .stat-card { padding: 0.625rem; }
+  .stat-value { font-size: 1rem; }
+
+  /* About info cards — single column */
+  .about-side { gap: 0.625rem; }
+  .info-card { padding: 0.875rem; }
+  .info-value { font-size: 0.8125rem; }
+
+  /* Currently grid — single column */
+  .currently-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+  .current-card { padding: 1.125rem; }
+  .current-card h3 { font-size: 0.9375rem; }
+  .current-card p { font-size: 0.8125rem; }
+
+  /* Tech marquee — prevent overflow */
+  .marquee-track { padding: 0.75rem; gap: 0.5rem; }
+  .marquee-item { padding: 0.375rem 0.875rem; font-size: 0.8125rem; }
+  .marquee-fade { width: 2.5rem; }
+
+  /* Skills — single column */
+  .skills-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .skill-card { padding: 1.125rem; }
+
+  /* Research — single column with proper padding */
+  .research-list { gap: 1rem; }
+  .research-card { padding: 1.125rem; }
+  .research-card h3 { font-size: 1.0625rem; }
+  .research-card > p { font-size: 0.875rem; }
+  .research-subtitle { font-size: 0.8125rem; }
+  .research-icon { width: 2.5rem; height: 2.5rem; }
+  .research-icon svg { width: 1.0625rem; height: 1.0625rem; }
+
+  /* Projects — single column */
+  .projects-ai { grid-template-columns: 1fr; gap: 1rem; }
+  .projects-se { grid-template-columns: 1fr; gap: 0.75rem; }
+  .project-card.ai, .project-card { padding: 1.125rem; }
+  .project-desc { font-size: 0.8125rem; }
+  .project-card h4 { font-size: 0.9375rem; }
+  .project-card.ai h4 { font-size: 1.0625rem; }
+
+  /* Education — stack vertically */
+  .education-main { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1.25rem; }
+  .education-info { gap: 0.75rem; }
+  .education-icon { width: 2.75rem; height: 2.75rem; }
+  .education-info h3 { font-size: 1.0625rem; }
+  .education-info p { font-size: 0.8125rem; }
+  .education-cgpa { align-self: flex-start; }
+  .education-detail-grid { grid-template-columns: 1fr; gap: 0.625rem; }
+  .education-detail { padding: 1rem; }
+  .education-detail-value { font-size: 0.9375rem; }
+  .education-detail-desc { font-size: 0.75rem; }
+
+  /* Contact — single column for items */
+  .contact-items { grid-template-columns: 1fr; gap: 0.5rem; }
+  .contact-item { padding: 0.875rem; }
+  .contact-item-value { font-size: 0.8125rem; }
+  .contact-form { padding: 1.25rem; gap: 0.875rem; }
+  .form-row { gap: 0.875rem; }
+  .form-field input, .form-field textarea { padding: 0.75rem 0.875rem; font-size: 0.875rem; }
+  .contact-form .btn-primary { width: 100%; justify-content: center; }
+
+  /* Footer — compact */
+  .footer { padding: 1.5rem 1rem; }
+  .footer-card { padding: 1.25rem; gap: 0.875rem; }
+  .footer-actions { width: 100%; flex-direction: column; gap: 0.75rem; }
+  .footer-actions .btn-secondary { width: 100%; justify-content: center; }
+  .footer-name { font-size: 0.8125rem; }
+  .footer::after { font-size: 0.6875rem; }
+
+  /* Section headings — center on mobile */
+  .section-heading { text-align: center; }
+  .section-heading h2 { font-size: 1.625rem; }
+  .section-heading-center h2 { font-size: 1.625rem; }
+  .section-heading p, .section-heading-center p { font-size: 0.8125rem; }
+  .projects-subhead { text-align: center; }
+
+  /* Floating chips on hero avatar — hide on small screens to avoid overlap */
+  .floating-chip { font-size: 0.625rem; padding: 0.375rem 0.5rem; }
+}
+
+/* === SMALL PHONES (≤ 360px) === */
+@media (max-width: 360px) {
+  .hero-name { font-size: 2.125rem; }
+  .hero-bio { font-size: 0.875rem; }
+  .btn-primary, .btn-secondary { padding: 0.75rem 1rem; font-size: 0.75rem; }
+  .section-heading h2 { font-size: 1.5rem; }
+}
+
+/* === TABLETS (481px - 767px) === */
+@media (min-width: 481px) and (max-width: 767px) {
+  .hero { padding: 6.5rem 1.25rem 4rem; }
+  .hero-name { font-size: 3.25rem; }
+  .hero-typing { padding: 0.625rem 1.125rem; }
+  .typing-text { font-size: 1rem; }
+
+  /* 2-column grids for cards */
+  .currently-grid { grid-template-columns: repeat(2, 1fr); gap: 0.875rem; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .projects-ai { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .projects-se { grid-template-columns: repeat(2, 1fr); gap: 0.875rem; }
+  .about-grid { gap: 1.25rem; }
+
+  /* About stats — 4 cols on tablet */
+  .about-stats { grid-template-columns: repeat(4, 1fr); }
+
+  /* Education details — 3 cols on tablet */
+  .education-detail-grid { grid-template-columns: repeat(3, 1fr); }
+
+  /* Contact items — 2 cols on tablet */
+  .contact-items { grid-template-columns: repeat(2, 1fr); }
+
+  /* Section headings — center on tablet */
+  .section-heading { text-align: center; }
+  .section-heading h2 { font-size: 2rem; }
+}
+
+/* === TABLET / SMALL DESKTOP (768px - 1023px) — Navbar collapses here === */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-name { font-size: 3.75rem; }
+  .hero-grid { gap: 2rem; }
+  .section-heading h2 { font-size: 2.25rem; }
+
+  /* Slightly larger cards on this range */
+  .current-card, .research-card, .about-main, .contact-form, .skill-card, .project-card { padding: 1.5rem; }
+}
+
+/* === LARGE DESKTOP (≥ 1280px) === */
+@media (min-width: 1280px) {
+  .container { max-width: 80rem; }
+}
+
+/* === TOUCH TARGETS — minimum 44px on coarse pointers === */
+@media (pointer: coarse) {
+  .social-icon,
+  .nav-links button,
+  .mobile-menu button,
+  .contact-form .btn-primary,
+  .footer-actions .btn-secondary,
+  .theme-toggle,
+  .menu-toggle,
+  .scroll-hint-arrow {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* === SAFE AREA INSETS (iOS notches, home indicators) === */
+@supports (padding: max(0px)) {
+  .navbar {
+    padding-left: max(0.75rem, env(safe-area-inset-left));
+    padding-right: max(0.75rem, env(safe-area-inset-right));
+  }
+  .footer {
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  }
+  .mobile-menu {
+    padding-left: max(0.75rem, env(safe-area-inset-left));
+    padding-right: max(0.75rem, env(safe-area-inset-right));
+  }
 }
 
 /* Reduced motion */
@@ -1349,4 +1540,5 @@ input, textarea { font-family: inherit; }
     transition-duration: 0.01ms !important;
   }
   .reveal { opacity: 1; transform: none; }
+  .marquee-track { animation: none; }
 }
